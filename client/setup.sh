@@ -18,6 +18,9 @@ GUI_CONFIG="$BASEDIR/configuration.yaml"
 GUI_CONFIG_TARGET="$GUI_LOCATION/configuration.yaml"
 GUI_REQUIREMENTS="$BASEDIR/requirements.txt"
 
+SCRIPTS_REPO="https://gitlab.cern.ch/hgcal-daq-sw/hexactrl-script.git"
+SCRIPTS_TARGET="/opt/hexactrl-script"
+
 GUI_VENV="$GUI_LOCATION/venv"
 
 # Verification functions
@@ -76,9 +79,11 @@ else
 fi
 
 # Install dependencies
-# echo "Install dependencies..."
+echo "Install dependencies..."
 # sudo yum install epel-release 
 # sudo yum update
+
+sudo yum install redis # Needed by step 1 (restart redis + daq)
 
 # devtoolset-10 is not a repo in AlmaLinux, repalce with gcc-toolset-13
 # sudo yum install pugixml pugixml-devel python3 python3-devel cmake zeromq zeromq-devel cppzmq-devel libyaml libyaml-devel yaml-cpp yaml-cpp-devel boost boost-devel root
@@ -138,4 +143,15 @@ if [ ! -f $GUI_CONFIG_TARGET ]; then
     cp "$GUI_CONFIG" "$GUI_CONFIG_TARGET"
 else
     echo "GUI Config already exists, skipping..."
+fi
+
+
+# Clone Scripts
+if [ ! -d $SCRIPTS_TARGET ]; then
+    echo "Cloning Scripts..."
+    sudo mkdir $SCRIPTS_TARGET
+    sudo chmod 777 $SCRIPTS_TARGET
+    git clone "$SCRIPTS_REPO" "$SCRIPTS_TARGET"
+else
+    echo "Scripts Already Cloned, Skipping..."
 fi
