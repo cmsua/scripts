@@ -17,10 +17,17 @@ cd "$BUILD_DIR"
 
 # Taken from ci/alma/9/x86_64/.gitlab-ci.yml
 echo "Building..."
-cmake -DBUILD_CLIENT=ON -DBRANCH_NAME=$CI_COMMIT_REF_NAME -DCMAKE_INSTALL_PREFIX=/opt/hexactrl/$CI_COMMIT_REF_NAME ../
+MACHINE_TYPE=`uname -m`
+
+if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+    cmake -DBUILD_CLIENT=ON -DBRANCH_NAME=$CI_COMMIT_REF_NAME -DCMAKE_INSTALL_PREFIX=/opt/hexactrl/$CI_COMMIT_REF_NAME ../
+else
+    cmake -DBRANCH_NAME=$CI_COMMIT_REF_NAME -DCMAKE_INSTALL_PREFIX=/opt/hexactrl/$CI_COMMIT_REF_NAME ../
+end
+
 make -j3
 sudo make install
-cpack
+sudo cpack
 
 # Link files
 echo "Linking to ROCv3"
@@ -32,13 +39,24 @@ sudo ln -s "$folder/" /opt/hexactrl/ROCv3
 echo "Installing Python Dependencies..."
 
 pip3 install --upgrade pip
-pip3 install -r /opt/hexactrl/ROCv3/ctrl/etc/requirements.txt --user
+pip3 install -r /opt/hexactrl/ROCv3/etc/requirements.txt --user
 
 # Link service
 echo "Linking service file..."
-sudo ln -s /opt/hexactrl/ROCv3/share/daq-client.service /etc/systemd/system/daq-client.service
+if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+    sudo ln -s /opt/hexactrl/ROCv3/share/daq-client.service /etc/systemd/system/daq-client.service
+else
+    sudo ln -s /opt/hexactrl/ROCv3/share/daq-server.service /etc/systemd/system/daq-server.service
+    sudo ln -s /opt/hexactrl/ROCv3/share/i2c-server.service /etc/systemd/system/i2c-server.service
+end
 
 # Enable DAQ Client Service
 echo "Enabling DAQ Client Service..."
 sudo systemctl daemon-reload
-sudo systemctl enable daq-client.service
+
+if [ ${MACHINE_TYPE} == 'x86_64' ]; then
+    sudo systemctl enable daq-client.service
+else
+    sudo systemctl enable daq-server.service
+    sudo systemctl enable i2c-server.service
+end
