@@ -1,0 +1,12 @@
+[cernrepo_hgcwebsw]
+name=CERN-REPO-hgcwebsw
+baseurl=https://hgc-online-sw.web.cern.ch/hgc-online-sw/repository/
+enabled=1
+gpgcheck=0
+metadata_expire=1m
+[hgcal-daq-sw]
+name=HCGAL-DAQ-SW
+baseurl=https://hgc-online-sw.web.cern.ch/hgc-online-sw/hgcal-daq-sw/almalinux/9/aarch64/
+enabled=1
+gpgcheck=0
+metadata_expire=1m

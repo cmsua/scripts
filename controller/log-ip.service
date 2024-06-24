@@ -1,0 +1,10 @@
+[Unit]
+Description=Logs the internal IP network to a file
+After=network-online.target
+
+[Service]
+ExecStart=/usr/sbin/ifconfig
+StandardOutput=file:/opt/ip.txt
+
+[Install]
+WantedBy=default.target

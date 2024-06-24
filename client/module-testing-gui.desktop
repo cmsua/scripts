@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=HGCal Module Testing GUI
+Path=/opt/hgcal-module-testing-gui
+Exec=/opy/hgcal-module-testing-gui/venv/bin/python3 TestingGUIBase.py
+Icon=/usr/share/pixmaps/faces/cat.png

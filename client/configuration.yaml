@@ -1,0 +1,20 @@
+DBDatabase: ''
+DBHostname: ''
+DBPassword: ''
+DBUsername: ''
+DataLoc: /home/hgcal/data/
+DebugMode: true
+DefaultFontSize: '15'
+HVResource: ASRL/dev/ttyUSB0::INSTR
+HVTerminal: Rear
+HVWiresPolarization: Reverse
+HasHVSwitch: false
+HasLocalDB: true
+HasRHSensor: false
+Inspectors:
+- nanguyen
+MACSerial: CM
+PCKeyLoc: /home/hgcal/.ssh/id_rsa
+TestingPCOpSys: Alma9
+TrenzHostname:
+- 10.116.24.233

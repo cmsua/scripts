@@ -1,0 +1,4 @@
+sw-builder/hexactrl-sw*
+**/id_rsa*
+ps/grafana
+ps/supply/venv

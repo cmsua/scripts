@@ -1,0 +1,16 @@
+async-timeout==4.0.3
+click==8.1.7
+gpib-ctypes==0.3.0
+ifaddr==0.2.0
+numpy==1.26.4
+prometheus_client==0.20.0
+psutil==5.9.8
+pyserial==3.5
+python-vxi11==0.9
+pyusb==1.2.1
+pyvicp==1.1.0
+PyVISA==1.14.1
+PyVISA-py==0.7.2
+spd3303x==1.0.2
+typing_extensions==4.12.2
+zeroconf==0.132.2
