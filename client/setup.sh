@@ -151,7 +151,7 @@ if [ ! -d $SCRIPTS_TARGET ]; then
     echo "Cloning Scripts..."
     sudo mkdir $SCRIPTS_TARGET
     sudo chmod 777 $SCRIPTS_TARGET
-    git clone "$SCRIPTS_REPO" "$SCRIPTS_TARGET"
+    git clone --recurse-submodules "$SCRIPTS_REPO" "$SCRIPTS_TARGET"
 else
     echo "Scripts Already Cloned, Skipping..."
 fi
