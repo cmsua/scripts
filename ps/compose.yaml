@@ -30,6 +30,7 @@ services:
     ports:
       - 5000:5000
     environment:
-      - address=TCPIP::10.116.24.138
+      - ps_address=TCPIP::10.116.24.138
+      - redis_address=172.17.0.1
 volumes:
   prom_data:

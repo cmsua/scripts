@@ -11,6 +11,7 @@ pyusb==1.2.1
 pyvicp==1.1.0
 PyVISA==1.14.1
 PyVISA-py==0.7.2
+redis==5.0.7
 spd3303x==1.0.2
 typing_extensions==4.12.2
 zeroconf==0.132.2
