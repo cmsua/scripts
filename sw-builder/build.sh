@@ -7,7 +7,7 @@ CI_COMMIT_REF_NAME="778279a3"
 # Clone Repo
 if [! -d "$BASEDIR/hexactrl-sw" ]; then
     git clone --recursive ssh://git@gitlab.cern.ch:7999/hgcal-daq-sw/hexactrl-sw.git "$BASEDIR/hexactrl-sw"
-end
+fi
 
 
 # Install dependencies
